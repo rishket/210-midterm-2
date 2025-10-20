@@ -138,7 +138,7 @@ int main() {
     for (int t = 1; t <= 20; t++) {
         cout << "Time step #" << t << ":" << endl;
         
-        // Try to serve customer (40% chance)
+        // Serve customer 40% of the time
         if (!line.is_empty() && (rand() % 100) < 40) {
             Customer* first = line.peek_front();
             cout << "    " << first->name;

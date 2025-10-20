@@ -1,15 +1,27 @@
 #include <iostream>
+#include <string>
+#include <vector>
+#include <fstream>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
 const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
 
+// Added struct to represent customers
+struct Customer {
+    string name;
+    bool vip;
+    Customer(const string& n = "", bool v = false) : name(n), vip(v) {}
+};
+
 class DoublyLinkedList {
 private:
     struct Node {
-        int data;
+        Customer data;  // Changed from int to Customer
         Node* prev;
         Node* next;
-        Node(int val, Node* p = nullptr, Node* n = nullptr) {
+        Node(const Customer& val, Node* p = nullptr, Node* n = nullptr) {
             data = val; 
             prev = p;
             next = n;
@@ -22,13 +34,13 @@ private:
 public:
     DoublyLinkedList() { head = nullptr; tail = nullptr; }
 
-    void insert_after(int value, int position) {
+    void insert_after(const Customer& customer, int position) {  // Changed parameter type
         if (position < 0) {
             cout << "Position must be >= 0." << endl;
             return;
         }
 
-        Node* newNode = new Node(value);
+        Node* newNode = new Node(customer);
         if (!head) {
             head = tail = newNode;
             return;
@@ -53,12 +65,12 @@ public:
         temp->next = newNode;
     }
 
-    void delete_val(int value) {
+    void delete_customer(const string& name) {  // Changed to find customer by name
         if (!head) return;
 
         Node* temp = head;
         
-        while (temp && temp->data != value)
+        while (temp && temp->data.name != name)  // Compare names instead
             temp = temp->next;
 
         if (!temp) return; 
@@ -113,8 +125,8 @@ public:
         delete temp;
     }
 
-    void push_back(int v) {
-        Node* newNode = new Node(v);
+    void push_back(const Customer& c) {  // Changed parameter type
+        Node* newNode = new Node(c);
         if (!tail)
             head = tail = newNode;
         else {
@@ -124,8 +136,8 @@ public:
         }
     }
     
-    void push_front(int v) {
-        Node* newNode = new Node(v);
+    void push_front(const Customer& c) {  // Changed parameter type
+        Node* newNode = new Node(c);
         if (!head)
             head = tail = newNode;
         else {
@@ -179,27 +191,29 @@ public:
     void print() {
         Node* current = head;
         if (!current) {
-            cout << "List is empty." << endl;
+            cout << "Line is empty." << endl;
             return;
         }
         while (current) {
-            cout << current->data << " ";
+            cout << current->data.name;  // Print customer name
+            if (current->data.vip) cout << " (VIP)";
+            cout << endl;
             current = current->next;
         }
-        cout << endl;
     }
 
     void print_reverse() {
         Node* current = tail;
         if (!current) { 
-            cout << "List is empty." << endl;
+            cout << "Line is empty." << endl;
             return;
         }
         while (current) {
-            cout << current->data << " ";
+            cout << current->data.name;  // Print customer name
+            if (current->data.vip) cout << " (VIP)";
+            cout << endl;
             current = current->prev;
         }
-        cout << endl;
     }
 };
 

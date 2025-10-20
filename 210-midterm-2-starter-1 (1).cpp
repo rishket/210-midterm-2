@@ -218,8 +218,26 @@ public:
 };
 
 int main() {
-    cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS;  // dummy statement to avoid compiler warning
+    // Just try reading the file first
+    vector<string> names;
+    ifstream in("names.txt");
+    if (!in) {
+        cout << "Error: Cannot open names.txt" << endl;
+        return 1;
+    }
 
-    
+    string name;
+    while (getline(in, name)) {
+        if (!name.empty()) {
+            names.push_back(name);
+        }
+    }
+
+    // Just print first few names to test
+    cout << "Testing file read - first 5 names:" << endl;
+    for (int i = 0; i < 5 && i < (int)names.size(); i++) {
+        cout << names[i] << endl;
+    }
+
     return 0;
 }

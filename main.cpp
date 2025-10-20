@@ -103,6 +103,7 @@ public:
 int main() {
     srand(time(0));
 
+    // Read names from file into vector
     vector<string> names;
     ifstream in("names.txt");
     if (!in) {
@@ -122,7 +123,7 @@ int main() {
     
     int nextCustomerIndex = 0;
     
-    // Add first 5 customers
+    // Add first 5 customers to start
     for (int i = 0; i < 5 && i < (int)names.size(); i++) {
         cout << "    " << names[i] << " joins the line" << endl;
         Customer c(names[i], false);
@@ -153,7 +154,7 @@ int main() {
 
         // Add new customer 60% of the time
         if ((rand() % 100) < 60 && nextCustomerIndex < (int)names.size()) {
-            bool isVip = (rand() % 100) < 10;
+            bool isVip = (rand() % 100) < 10; // 10% VIP chance
             cout << "    " << names[nextCustomerIndex];
             if (isVip) cout << " (VIP)";
             cout << " joins the line" << endl;

@@ -215,6 +215,7 @@ public:
             current = current->prev;
         }
     }
+
 };
 
 int main() {
@@ -233,17 +234,19 @@ int main() {
         }
     }
 
-    // Create a test line and add first customer
+    // Create line and add first 5 customers
     DoublyLinkedList line;
+    cout << "Store opens:" << endl;
     
-    // Try adding first customer
-    if (!names.empty()) {
-        Customer first(names[0], false);  // Create non-VIP customer
-        line.push_back(first);
-        cout << "Added first customer to line." << endl;
-        cout << "Current line:" << endl;
-        line.print();
+    // Add first 5 customers
+    for (int i = 0; i < 5 && i < (int)names.size(); i++) {
+        cout << "    " << names[i] << " joins the line" << endl;
+        Customer c(names[i], false);
+        line.push_back(c);
     }
+
+    cout << "\nInitial line:" << endl;
+    line.print();
 
     return 0;
 }

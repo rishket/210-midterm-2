@@ -151,9 +151,9 @@ int main() {
             cout << "    No one in line" << endl;
         }
 
-        // Try to add new customer (60% chance)
+        // Add new customer 60% of the time
         if ((rand() % 100) < 60 && nextCustomerIndex < (int)names.size()) {
-            bool isVip = (rand() % 100) < 10;  // 10% chance for VIP
+            bool isVip = (rand() % 100) < 10;
             cout << "    " << names[nextCustomerIndex];
             if (isVip) cout << " (VIP)";
             cout << " joins the line" << endl;

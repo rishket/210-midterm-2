@@ -160,9 +160,9 @@ int main() {
             
             Customer newCustomer(names[nextCustomerIndex], isVip);
             if (isVip) {
-                line.push_front(newCustomer);  // VIPs go to front
+                line.push_front(newCustomer);
             } else {
-                line.push_back(newCustomer);   // Others to back
+                line.push_back(newCustomer);
             }
             nextCustomerIndex++;
         }

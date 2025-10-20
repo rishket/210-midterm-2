@@ -218,7 +218,7 @@ public:
 };
 
 int main() {
-    // Just try reading the file first
+    // Read names from file
     vector<string> names;
     ifstream in("names.txt");
     if (!in) {
@@ -233,10 +233,16 @@ int main() {
         }
     }
 
-    // Just print first few names to test
-    cout << "Testing file read - first 5 names:" << endl;
-    for (int i = 0; i < 5 && i < (int)names.size(); i++) {
-        cout << names[i] << endl;
+    // Create a test line and add first customer
+    DoublyLinkedList line;
+    
+    // Try adding first customer
+    if (!names.empty()) {
+        Customer first(names[0], false);  // Create non-VIP customer
+        line.push_back(first);
+        cout << "Added first customer to line." << endl;
+        cout << "Current line:" << endl;
+        line.print();
     }
 
     return 0;
